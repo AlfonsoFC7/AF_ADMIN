@@ -1,0 +1,91 @@
+<div class="row" *ngIf="!cargando">
+    <span id="spanId"><a style="color:#1abb40; text-decoration: none;" href="/articulos">ARTICULOS</a></span>
+        <div id="divCar" class="card">
+            <div class="card-body" >
+
+                <div class="table-responsive">
+                    <table class="table table-bordered" style="border-radius: 5px;">
+                        <thead style="background-color: #1976d2; border-radius: 5%;">
+                            <tr>
+                                <th>clave</th>
+                                <th>Nombre</th>
+                                <th>Tienda</th>
+                                <th>Fecha</th>
+                                <th>Cliente</th>
+                                <th>Descripcion</th>
+                                <th>Precio</th>
+                                <th>Imagen</th>
+                                <th>Stock</th>
+                                <th class="w100 text-nowrap">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let articulo of articulos">
+                                <td> 
+                                    {{articulo.idArt}}
+                                </td>
+                                <td> 
+                                    {{articulo.artName}}
+                                </td>
+                                <td>
+                                    {{articulo.idTie}}
+                                </td>
+                                <td>
+                                    {{articulo.fecha}}
+                                </td>
+                                <td>
+                                    {{articulo.idCli}}
+                                </td>
+                                <td>
+                                    {{articulo.artDescripcion}}
+                                </td>
+                                <td>
+                                    {{articulo.artPrecio}}
+                                </td>
+                                <td>
+                                    {{articulo.artImagen}}
+                                </td>
+                                <td>
+                                    {{articulo.artStock}}
+                                </td>
+                                <td>
+                                    <div class="input-group input-group-sm mb-3">
+                                      <button type="button" class="btn btn-light btn-sm" style="background-color: #1976d2;" (click)="cargarArticuloId(articulo.idArt)">AGREGAR</button>
+                                      <button type="button" class="btn btn-light btn-sm" style="background-color: #1abb40;" (click)="upQuantity()" >+</button>
+                                    </div>
+                                  </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    <div id="divCarR" class="card col-4">
+
+            <h3>Carrito de Compras</h3>
+        <table class="table table-primary ">
+          <thead style="background-color: #1976d2; border-radius: 5%;">
+            <tr>
+              <th>Producto</th>
+              <th>Cantidad</th>
+              <th>Precio Unitario</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{articuloForm.controls['artName'].value}}</td>
+              <td>{{cantidad}}</td>
+              <td>{{articuloForm.controls['artPrecio'].value | currency:'$'}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="text-end">Total {{total() | currency:'$'}}</p>
+        <div class="text-end">
+            <button >Comprar</button>
+        </div>
+        </div>
+</div>
+

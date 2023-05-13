@@ -1,0 +1,40 @@
+@media (min-width: 1300px) {
+    #divCar {
+      position: relative;
+      left:-250px;
+    }
+    #divCarR {
+        position: relative;
+        margin-left:5px;
+        left:750px;
+        top: -152px;
+      }
+      #spanId{
+        position:relative; 
+        left:-50px; 
+        width: 100px; 
+        border-radius: 50%; 
+        background-color:#1976d2;
+      }
+  }
+
+  @media (max-width: 1300px) {
+    #divCar {
+      position: relative;
+      left:80px;
+      width:80%;
+    }
+    #divCarR {
+        position: relative;
+        margin-top:25px;
+        left:300px;
+      }
+      #spanId{
+        position:relative; 
+        left:50px; 
+        width: 100px; 
+        border-radius: 30%; 
+        background-color:#1976d2;
+        height: 30px;
+      }
+  }

@@ -1,0 +1,189 @@
+
+<div class="row animated fadeIn fast"
+    *ngIf="cargando">
+    <div class="col-12">
+        
+        <div class="alert alert-info text-center">
+          <h4 class="alert-heading">Cargando</h4>
+          <i class="fa fa-spin fa-refresh fa-2x"></i>
+          <p class="mb-0">Por favor espere</p>
+        </div>
+
+    </div>
+</div> 
+
+<div class="login-box card d-flex justify-content-center">
+    <h1 class="d-flex justify-content-center">CREA UN NUEVO ARTICULO</h1>
+    <div class="card-body">
+        <form class="form-horizontal form-material" 
+                autocomplete="off"
+                [formGroup]="articuloForm"
+                (ngSubmit)="CrearArticulo()"
+                id="loginform">
+
+            <a href="javascript:void(0)" class="text-center db"></a>
+            <div class="form-group m-t-40">
+                <div class="col-xs-12">
+                    <label>Clave</label>
+                    <input class="form-control" 
+                            type="text" 
+                            placeholder="idArt"
+                            formControlName="idArt">
+                </div>
+            </div>
+            <div class="form-group m-t-40">
+                <div class="col-xs-12">
+                    <label>Nombre</label>
+                    <input class="form-control" 
+                            type="text" 
+                            placeholder="artName"
+                            formControlName="artName">
+                </div>
+            </div>
+            <div class="form-group m-t-40">
+                <div class="col-xs-12">
+                    <label>Tiendas</label>
+                    <select class="form-select" aria-label="Default select example" formControlName="idTie">
+                        <option [ngValue]="tienda.idTie" *ngFor="let tienda of tiendas">{{tienda.tieSucursal}}</option>
+                        </select>
+                </div>
+            </div>
+            <div class="form-group m-t-40">
+                <div class="col-xs-12">
+                    <label>Cliente</label>
+                    <input class="form-control" 
+                            type="text" 
+                            placeholder="idCli"
+                            formControlName="idCli">
+                </div>
+            </div>
+            <div class="form-group m-t-40">
+                <div class="col-xs-12">
+                    <label>Descripcion</label>
+                    <input class="form-control" 
+                            type="text" 
+                            placeholder="artDescripcion"
+                            formControlName="artDescripcion">
+                </div>
+            </div>
+            <div class="form-group m-t-40">
+                <div class="col-xs-12">
+                    <label>Precio</label>
+                    <input class="form-control" 
+                            type="number" 
+                            placeholder="artPrecio"
+                            formControlName="artPrecio">
+                </div>
+            </div>
+            <div class="form-group m-t-40">
+                <div class="col-xs-12">
+                    <label class="btn btn-secondary btn-file">Imagen
+                        <input name="file" type="file" (change)="onFileChange($event)">
+                        <input type="hidden" name="fileHidden" formControlName="artImagen"/> <!-- Validation Field -->
+                     </label>
+                </div>
+            </div>
+            <div class="form-group m-t-40">
+                <label>Stock</label>
+                <div class="col-xs-12">
+                    <input type="checkbox" formControlName="artStock" ng-true-value="claro" ng-false-value="oscuro" />
+                </div>
+            </div>
+            <div class="form-group text-center m-t-20">
+                <div class="col-xs-12">
+                    <button class="btn btn-info btn-lg btn-block text-uppercase btn-rounded" type="submit">CREAR</button>
+                    <button class="btn btn-info btn-lg btn-block text-uppercase btn-rounded" type="button" (click)="guardarCambios()">ACTUALIZAR</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+<div class="row"
+    *ngIf="!cargando">
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>clave</th>
+                                <th>Nombre</th>
+                                <th>Tienda</th>
+                                <th>Fecha</th>
+                                <th>Cliente</th>
+                                <th>Descripcion</th>
+                                <th>Precio</th>
+                                <th>Imagen</th>
+                                <th>Stock</th>
+                                <th class="w100 text-nowrap">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let articulo of articulos">
+                                <td> 
+                                    {{articulo.idArt}}
+                                </td>
+                                <td> 
+                                    {{articulo.artName}}
+                                </td>
+                                <td>
+                                    {{articulo.idTie}}
+                                </td>
+                                <td>
+                                    {{articulo.fecha}}
+                                </td>
+                                <td>
+                                    {{articulo.idCli}}
+                                </td>
+                                <td>
+                                    {{articulo.artDescripcion}}
+                                </td>
+                                <td>
+                                    {{articulo.artPrecio}}
+                                </td>
+                                <td>
+                                    {{articulo.artImagen}}
+                                </td>
+                                <td>
+                                    {{articulo.artStock}}
+                                </td>
+                                <td class="text-nowrap text-center">
+                                    <a (click)="cargarArticuloId(articulo.idArt)"
+                                        data-toggle="tooltip" 
+                                        class="cursor"
+                                        data-original-title="Guardar cambios"> 
+                                        <i class="fa fa-pencil text-inverse m-r-10"></i>
+                                        Actualizar 
+                                    </a>
+
+                                    <a (click)="eliminarArticulo(articulo.idArt)" 
+                                        data-toggle="tooltip" 
+                                        data-original-title="Borrar"
+                                        class="cursor"> 
+                                        <i class="fa fa-close text-danger">
+                                            Borrar
+                                        </i>
+                                    </a>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<a href="/tiendas">Tiendas</a>
+<br>
+<a href="/clientes">Clientes</a>
+

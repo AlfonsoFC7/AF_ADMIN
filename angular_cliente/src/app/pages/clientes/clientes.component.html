@@ -1,0 +1,118 @@
+<div class="row animated fadeIn fast"
+    *ngIf="cargando">
+    <div class="col-12">       
+        <div class="alert alert-info text-center">
+          <h4 class="alert-heading">Cargando</h4>
+          <i class="fa fa-spin fa-refresh fa-2x"></i>
+          <p class="mb-0">Por favor espere</p>
+        </div>
+    </div>
+</div> 
+
+<div class="login-box card d-flex justify-content-center">
+    <h1 class="d-flex justify-content-center">AGREGAR UN NUEVO CLIENTE CON ARTICULO</h1>
+    <div class="card-body">
+        <form class="form-horizontal form-material" 
+                autocomplete="off"
+                [formGroup]="clienteForm"
+                (ngSubmit)="CrearCliente()"
+                id="loginform">
+
+            <a href="javascript:void(0)" class="text-center db"></a>
+            <div class="form-group m-t-40">
+                <div class="col-xs-12">
+                    <label>Clave</label>
+                    <input class="form-control" 
+                            type="text" 
+                            placeholder="idCli"
+                            formControlName="idCli">
+                </div>
+            </div>
+            <div class="form-group m-t-40">
+                <div class="col-xs-12">
+                    <label>Nombre</label>
+                    <input class="form-control" 
+                            type="text" 
+                            placeholder="cliName"
+                            formControlName="cliName">
+                </div>
+            </div>
+            <div class="form-group m-t-40">
+                <div class="col-xs-12">
+                    <label>Articulo</label>
+                    <input class="form-control" 
+                            type="numeric" 
+                            placeholder="idArt"
+                            formControlName="idArt">
+                </div>
+            </div>
+            <div class="form-group text-center m-t-20">
+                <div class="col-xs-6">
+                    <button class="btn btn-info btn-lg btn-block text-uppercase btn-rounded" type="submit">CREAR</button>
+                    <button class="btn btn-info btn-lg btn-block text-uppercase btn-rounded" type="button" (click)="guardarCambios()">ACTUALIZAR</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row"
+    *ngIf="!cargando">
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>clave</th>
+                                <th>Nombre</th>
+                                <th>Articulo</th>
+                                <th class="w100 text-nowrap">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let cliente of clientes">
+                                <td> 
+                                    {{cliente.idCli}}
+                                </td>
+                                <td> 
+                                    {{cliente.cliName}}
+                                </td>
+                                <td>
+                                    {{cliente.idArt}}
+                                </td>
+                                <td class="text-nowrap text-center">
+                                    <a (click)="cargarClientesId(cliente.idCli)"
+                                        data-toggle="tooltip" 
+                                        class="cursor"
+                                        data-original-title="Guardar cambios"> 
+                                        <i class="fa fa-pencil text-inverse m-r-10"></i>
+                                        Actualizar 
+                                    </a>
+                                    <a (click)="eliminarCliente(cliente.idCli)" 
+                                        data-toggle="tooltip" 
+                                        data-original-title="Borrar"
+                                        class="cursor"> 
+                                        <i class="fa fa-close text-danger">
+                                            Borrar
+                                        </i>
+                                    </a>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<a href="/articulos">Articulos</a>
+<br>
+<a href="/car">Carrito</a>
+
