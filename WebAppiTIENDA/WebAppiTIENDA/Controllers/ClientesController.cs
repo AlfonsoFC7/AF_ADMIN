@@ -21,7 +21,7 @@ namespace WebAppiTIENDA.Controllers
             _context = context;
         }
 
-        // GET: api/Clientes
+        // GET: api/Clientes 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Clientes>>> GetClientes()
         {
@@ -43,7 +43,7 @@ namespace WebAppiTIENDA.Controllers
         }
 
         //PUT: api/Clientes/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // To protect from overposting attacks
         [HttpPut("{id}")]
         public async Task<IActionResult> PutClientes(int id, Clientes clientes)
         {
@@ -74,7 +74,7 @@ namespace WebAppiTIENDA.Controllers
         }
 
         // POST: api/Clientes
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // To protect from overposting attacks, see
         [HttpPost]
         public async Task<ActionResult<Clientes>> PostClientes(Clientes clientes)
         {
